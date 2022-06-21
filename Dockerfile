@@ -1,6 +1,7 @@
-FROM swift:5.6.2-focal
+ARG VERSION=5.6.2-focal
+FROM swift:$VERSION
 # Generic stuff to bootstrap ourself
-ENV DEBIAN_FRONTEND=noninteractive
+ARG DEBIAN_FRONTEND=noninteractive
 RUN apt update
 RUN apt -fy install python3 zsh lsb-release wget software-properties-common vim emacs
 # Bash sux
@@ -23,4 +24,9 @@ RUN xwin splat --output /Windows/
 # Clone macOS SDKs
 ADD macOS/ /macOS
 # Configure vcpkg
+RUN apt-get install -fy curl zip unzip tar
+RUN git clone https://github.com/microsoft/vcpkg.git
+RUN vcpkg/bootstrap-vcpkg.sh
+# Clone CMake Toolchain wrappers
+ADD CMake /CMakeToolchains
 

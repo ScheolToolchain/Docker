@@ -1,3 +1,6 @@
 [submodule "macOS"]
 	path = macOS
 	url = https://github.com/ScheolToolchain/macOS.git
+[submodule "CMake"]
+	path = CMake
+	url = https://github.com/ScheolToolchain/CMake.git
