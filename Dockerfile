@@ -3,17 +3,9 @@ FROM swift:$VERSION
 # Generic stuff to bootstrap ourself
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt update
-RUN apt -fy install python3 zsh lsb-release wget software-properties-common vim emacs
+RUN apt -fy install python3 zsh lsb-release wget software-properties-common vim emacs cmake ninja-build
 # Bash sux
 RUN chsh -s $(which zsh)
-# Install LLVM
-RUN wget https://apt.llvm.org/llvm.sh
-RUN chmod +x ./llvm.sh
-RUN ./llvm.sh
-RUN rm ./llvm.sh
-RUN apt-get install -fy clang-format clang-tidy clang-tools clang clangd libc++-dev libc++1 libc++abi-dev libc++abi1 libclang-dev libclang1 liblldb-dev libllvm-ocaml-dev libomp-dev libomp5 lld lldb llvm-dev llvm-runtime llvm python3-clang
-RUN update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++ 50
-RUN update-alternatives --install /usr/bin/cc cc /usr/bin/clang 50
 # Install Rust, required for xwin so we can download MSVC SDK
 RUN apt install -fy rust-all
 # Install MSVC SDKs
