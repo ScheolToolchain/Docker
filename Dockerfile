@@ -19,4 +19,4 @@ RUN cargo install xwin --locked
 ARG PATH=$PATH:/root/.cargo/bin/
 ARG XWIN_ACCEPT_LICENSE=1
 RUN xwin splat --output /xwin
-
+# Clone macOS SDKs
