@@ -12,7 +12,7 @@ RUN apt install -fy rust-all
 RUN cargo install xwin --locked
 ARG PATH=$PATH:/root/.cargo/bin/
 ARG XWIN_ACCEPT_LICENSE=1
-RUN xwin splat --output /Windows/
+RUN xwin --arch x86,x86_64,aarch,aarch64 splat --preserve-ms-arch-notation
 # Clone macOS SDKs
 ADD macOS/ /macOS
 # Configure vcpkg
